@@ -12,9 +12,16 @@ class AthleteStore {
     
     static var new: Athlete? // guaranteed if using NewStudentViewController
     
+    func save() {
+        
+    }
+    
+    func load() {
+        
+    }
 }
 
-class Athlete {
+class Athlete: Codable {
     var first: String
     var last: String
     var event: [Event]
@@ -31,7 +38,7 @@ class Athlete {
 
 }
 
-class Event {
+class Event: Codable {
     var type: EventType
     var block: Int
     
@@ -41,7 +48,7 @@ class Event {
     }
 }
 
-enum EventType: Int, CustomStringConvertible, CaseIterable {
+enum EventType: Int, CustomStringConvertible, CaseIterable, Codable {
     case AirTrajectory = 0
     case AnatomyAndPhysiology
     case Astronomy

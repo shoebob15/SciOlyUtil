@@ -73,6 +73,18 @@ class StudentsViewController: UIViewController, UITableViewDelegate, UITableView
         performSegue(withIdentifier: "detail", sender: self)
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            AthleteStore.athletes.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        
+        update()
+    }
     func update() {
         table.reloadData()
         

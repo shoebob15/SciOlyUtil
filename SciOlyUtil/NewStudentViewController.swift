@@ -17,7 +17,11 @@ class NewStudentViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     var athlete: Athlete = Athlete(first: "tmp", last: "tmp")
     
+    var edit = false
+    
     var vc: StudentsViewController?
+    
+    var detailVc: AthleteDetailViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +32,14 @@ class NewStudentViewController: UIViewController, UIPickerViewDelegate, UIPicker
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        athlete = Athlete(first: "tmp", last: "tmp")
+        if edit {
+            reload()
+        } else {
+            athlete = Athlete(first: "tmp", last: "tmp")
+            
+            reset()
+        }
         
-        reset()
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -52,18 +61,37 @@ class NewStudentViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBAction func add(_ sender: UIButton) {
         AthleteStore.new = Athlete(first: firstName.text!, last: lastName.text!, event: athlete.event)
         
+        if !edit {
+            AthleteStore.athletes.append(AthleteStore.new!)
+        }
         
-        AthleteStore.athletes.append(AthleteStore.new!)
+        if let vc {
+            vc.update()
+        }
         
-        vc!.update()
+        if let detailVc {
+            detailVc.refresh()
+        }
+        
+        
         
         self.dismiss(animated: true)
     }
     
+    @IBAction func resign(_ sender: Any) {
+        self.resignFirstResponder()
+    }
     @IBAction func eventNumChange(_ sender: UISegmentedControl) {
         eventPicker.selectRow(athlete.event[sender.selectedSegmentIndex].type.index, inComponent: 0, animated: true)
         
     }
+    
+    func reload() {
+        firstName.text = athlete.first
+        lastName.text = athlete.last
+        eventPicker.selectRow(athlete.event[0].type.index, inComponent: 0, animated: false)
+    }
+    
     func reset() {
         firstName.text = ""
         lastName.text = ""
