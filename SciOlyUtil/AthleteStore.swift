@@ -12,12 +12,20 @@ class AthleteStore {
     
     static var new: Athlete? // guaranteed if using NewStudentViewController
     
-    func save() {
-        
+    static func save() {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(athletes) {
+            UserDefaults.standard.set(encoded, forKey: "athletes")
+        }
     }
     
-    func load() {
-        
+    static func load() {
+        if let athleeetes = UserDefaults.standard.data(forKey: "athletes") {
+            let decoder = JSONDecoder()
+            if let decoded = try? decoder.decode([Athlete].self, from: athleeetes) {
+                athletes = decoded
+            }
+        }
     }
 }
 

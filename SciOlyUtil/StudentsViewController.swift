@@ -62,7 +62,7 @@ class StudentsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         
-        cell.textLabel!.text = AthleteStore.athletes[indexPath.row].last
+        cell.textLabel!.text = "\(AthleteStore.athletes[indexPath.row].last), \(AthleteStore.athletes[indexPath.row].first)"
         
         return cell
     }
@@ -84,7 +84,10 @@ class StudentsViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         update()
+        
+        AthleteStore.save()
     }
+    
     func update() {
         table.reloadData()
         

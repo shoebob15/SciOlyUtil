@@ -73,13 +73,16 @@ class NewStudentViewController: UIViewController, UIPickerViewDelegate, UIPicker
             detailVc.refresh()
         }
         
+        AthleteStore.save()
+        
         
         
         self.dismiss(animated: true)
     }
     
     @IBAction func resign(_ sender: Any) {
-        self.resignFirstResponder()
+        firstName.resignFirstResponder()
+        lastName.resignFirstResponder()
     }
     @IBAction func eventNumChange(_ sender: UISegmentedControl) {
         eventPicker.selectRow(athlete.event[sender.selectedSegmentIndex].type.index, inComponent: 0, animated: true)
