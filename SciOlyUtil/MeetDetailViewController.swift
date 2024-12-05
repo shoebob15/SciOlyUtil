@@ -64,6 +64,21 @@ class MeetDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         performSegue(withIdentifier: "manual", sender: self)
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            events.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            
+            meet.blocks[blockSelector.selectedSegmentIndex].events.remove(at: indexPath.row)
+        }
+        
+        refresh()
+    }
+    
     // called once when view loads
     func configure() {
         meetName.text = meet.name

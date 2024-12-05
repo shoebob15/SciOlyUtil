@@ -16,6 +16,7 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     var index = 0
     var meet: Meet!
     var vc: MeetDetailViewController!
+    static var available = EventType.allCases // TODO save
     
     override func viewDidLoad() {
         picker.delegate = self
@@ -33,7 +34,12 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     @IBAction func add(_ sender: UIButton) {
-        meet.blocks[index].events.append(Event(type: EventType(rawValue: picker.selectedRow(inComponent: 0))!, room: room.text!))
+        meet.blocks[index].events.append(Event(type: AddEventViewController.available[picker.selectedRow(inComponent: 0)], room: room.text!))
+        
+        if let index = AddEventViewController.available.firstIndex(of: EventType(rawValue: picker.selectedRow(inComponent: 0))!) {
+            AddEventViewController.available.remove(at: index)
+        }
+        
         vc.refresh()
         self.dismiss(animated: true)
     }
@@ -43,11 +49,12 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return EventType.allCases.count
+        return AddEventViewController.available.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return EventType.allCases[row].description
+
+        return AddEventViewController.available[row].description
     }
 
 }
