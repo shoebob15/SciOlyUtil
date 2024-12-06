@@ -16,11 +16,13 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     var index = 0
     var meet: Meet!
     var vc: MeetDetailViewController!
-    static var available = EventType.allCases // TODO save
+    static var available = EventType.allCasess
     
     override func viewDidLoad() {
         picker.delegate = self
         picker.dataSource = self
+        
+        AddEventViewController.available = MeetStore.getAvailable(meet: meet)
     }
 
     @IBAction func customEvent(_ sender: UISwitch) {

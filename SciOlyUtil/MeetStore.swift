@@ -25,6 +25,18 @@ class MeetStore {
             }
         }
     }
+    
+    static func getAvailable(meet: Meet) -> [EventType] {
+        var usedEvents = [EventType]()
+        
+        for block in meet.blocks {
+            for event in block.events {
+                usedEvents.append(event.type)
+            }
+        }
+        
+        return EventType.allCases.filter { !usedEvents.contains($0) }
+    }
 }
 
 class Meet: Codable {
