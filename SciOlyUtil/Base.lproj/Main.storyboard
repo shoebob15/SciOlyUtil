@@ -822,7 +822,7 @@
                                         </menu>
                                         <state key="normal" image="arrow.up.and.down.text.horizontal" catalog="system">
                                             <attributedString key="attributedTitle">
-                                                <fragment content=" Filter">
+                                                <fragment content="Sort">
                                                     <attributes>
                                                         <color key="NSColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <font key="NSFont" size="15" name="Futura-Medium"/>
@@ -886,6 +886,7 @@
                     <navigationItem key="navigationItem" id="AcT-K8-TAm"/>
                     <connections>
                         <outlet property="picker" destination="qOQ-U5-z8H" id="32b-If-IBp"/>
+                        <outlet property="sortButton" destination="hRw-zY-w7Q" id="jtX-rB-4IP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jBT-lA-ahU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
