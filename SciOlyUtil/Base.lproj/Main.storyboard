@@ -652,6 +652,9 @@
                                         <buttonConfiguration key="configuration" style="filled" image="keyboard.chevron.compact.down.fill" catalog="system">
                                             <color key="baseBackgroundColor" red="0.39607843139999999" green="0.56862745100000001" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="resign:" destination="jlG-3A-m6f" eventType="touchUpInside" id="II3-Nz-aCt"/>
+                                        </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="nW3-1F-tvt">
                                         <rect key="frame" x="0.0" y="228.66666666666669" width="373" height="34"/>

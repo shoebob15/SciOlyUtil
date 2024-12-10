@@ -59,4 +59,7 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         return AddEventViewController.available[row].description
     }
 
+    @IBAction func resign(_ sender: UIButton) {
+        room.resignFirstResponder()
+    }
 }

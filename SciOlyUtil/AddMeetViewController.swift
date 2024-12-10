@@ -50,5 +50,6 @@ class AddMeetViewController: UIViewController {
 
     @IBAction func resign(_ sender: Any) {
         name.resignFirstResponder()
+        numBlocks.resignFirstResponder()
     }
 }
