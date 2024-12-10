@@ -48,8 +48,12 @@ class AddPersonToEventViewController: UIViewController, UIPickerViewDelegate, UI
     }
     
     @IBAction func add(_ sender: UIButton) {
+        let filtered = AthleteStore.athletes.filter { athlete in
+            !event.athletes.contains { $0.name == athlete.name}
+        }
+        
         event.athletes.append(
-            AthleteStore.athletes[picker.selectedRow(inComponent: 0)]
+            filtered[picker.selectedRow(inComponent: 0)]
         )
         vc.refresh()
         
@@ -61,11 +65,19 @@ class AddPersonToEventViewController: UIViewController, UIPickerViewDelegate, UI
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return AthleteStore.athletes.count
+        let filtered = AthleteStore.athletes.filter { athlete in
+            !event.athletes.contains { $0.name == athlete.name}
+        }
+        
+        return filtered.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return AthleteStore.athletes[row].name
+        let filtered = AthleteStore.athletes.filter { athlete in
+            !event.athletes.contains { $0.name == athlete.name}
+        }
+        
+        return filtered[row].name
     }
     
     func sort(type: SortType) {
