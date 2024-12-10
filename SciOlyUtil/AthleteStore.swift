@@ -33,17 +33,19 @@ class Athlete: Codable {
     var first: String
     var last: String
     var event: [EventType]
+    var team: TeamType
     
 
     
-    init(first: String, last: String, event: [EventType]) {
+    init(first: String, last: String, event: [EventType], team: TeamType) {
         self.first = first
         self.last = last
         self.event = event
+        self.team = team
     }
     
-    convenience init (first: String, last: String) {
-        self.init(first: first, last: last, event: [.None, .None, .None, .None, .None])
+    convenience init(first: String, last: String) {
+        self.init(first: first, last: last, event: [.None, .None, .None, .None, .None], team: .JV1)
     }
     
     var name: String {
@@ -51,6 +53,20 @@ class Athlete: Codable {
     }
     
 
+}
+
+enum TeamType: Int, Codable {
+    case Varsity = 0
+    case JV1
+    case JV2
+    
+    var description: String {
+        switch self {
+        case .Varsity: return "Varsity"
+        case .JV1: return "JV1"
+        case .JV2: return "JV2"
+        }
+    }
 }
 
 class Event: Codable {

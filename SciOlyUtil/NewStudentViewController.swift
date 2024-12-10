@@ -14,6 +14,7 @@ class NewStudentViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var lastName: UITextField!
     @IBOutlet weak var eventPicker: UIPickerView!
     @IBOutlet weak var blockPicker: UISegmentedControl!
+    @IBOutlet weak var team: UISegmentedControl!
     
     var athlete: Athlete = Athlete(first: "tmp", last: "tmp")
     
@@ -59,7 +60,7 @@ class NewStudentViewController: UIViewController, UIPickerViewDelegate, UIPicker
     }
 
     @IBAction func add(_ sender: UIButton) {
-        AthleteStore.new = Athlete(first: firstName.text!, last: lastName.text!, event: athlete.event)
+        AthleteStore.new = Athlete(first: firstName.text!, last: lastName.text!, event: athlete.event, team: TeamType(rawValue: team.selectedSegmentIndex)!)
         
         if !edit {
             AthleteStore.athletes.append(AthleteStore.new!)
@@ -100,6 +101,7 @@ class NewStudentViewController: UIViewController, UIPickerViewDelegate, UIPicker
         firstName.text = athlete.first
         lastName.text = athlete.last
         eventPicker.selectRow(athlete.event[0].index, inComponent: 0, animated: false)
+        team.selectedSegmentIndex = athlete.team.rawValue
     }
     
     func reset() {
@@ -107,5 +109,6 @@ class NewStudentViewController: UIViewController, UIPickerViewDelegate, UIPicker
         lastName.text = ""
         eventPicker.selectRow(athlete.event[0].index, inComponent: 0, animated: false)
         blockPicker.selectedSegmentIndex = 0
+        team.selectedSegmentIndex = 0
     }
 }

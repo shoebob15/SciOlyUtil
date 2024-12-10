@@ -46,6 +46,8 @@ class AthleteDetailViewController: UIViewController {
             i += 1
         }
         
+        str.append("\n\(athlete.team.description)")
+        
         textView.text = str
     }
     @IBAction func edit(_ sender: Any) {

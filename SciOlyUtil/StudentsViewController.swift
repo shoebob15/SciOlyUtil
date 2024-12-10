@@ -60,9 +60,11 @@ class StudentsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = table.dequeueReusableCell(withIdentifier: "StudentCell")!
         
-        cell.textLabel!.text = "\(AthleteStore.athletes[indexPath.row].last), \(AthleteStore.athletes[indexPath.row].first)"
+        cell.textLabel!.text = "\(AthleteStore.athletes[indexPath.row].name)"
+        
+        cell.detailTextLabel!.text = "\(AthleteStore.athletes[indexPath.row].team.description)"
         
         return cell
     }
