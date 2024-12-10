@@ -26,17 +26,23 @@ class AddPersonToEventViewController: UIViewController, UIPickerViewDelegate, UI
         
         // build sort button
         
-        let alphabeticalClosure = { (action: UIAction) in
-            self.sort(type: .Alphabetical)
+        let alphabeticalAscClosure = { (action: UIAction) in
+            self.sort(type: .Alphabetical_Asc)
+        }
+        
+        let alphabeticalDesClosure = { (action: UIAction) in
+            self.sort(type: .Alphabetical_Des)
         }
         
         var options = [UIMenuElement]()
         
-        options.append(UIAction(title: "Alphabetical", handler: alphabeticalClosure))
+        options.append(UIAction(title: "Alphabetical (Asc)", handler: alphabeticalAscClosure))
+        
+        options.append(UIAction(title: "Alphabetical (Des)", handler: alphabeticalDesClosure))
         
         sortButton.menu = UIMenu(title: "Sort", children: options)
         
-        self.sort(type: .Alphabetical)
+        self.sort(type: .Alphabetical_Asc)
         
 
     }
@@ -64,16 +70,20 @@ class AddPersonToEventViewController: UIViewController, UIPickerViewDelegate, UI
     
     func sort(type: SortType) {
         switch type {
-        case .Alphabetical:
+        case .Alphabetical_Asc:
             AthleteStore.athletes = AthleteStore.athletes.sorted { $0.name < $1.name }
             break
+            
+        case .Alphabetical_Des:
+            AthleteStore.athletes = AthleteStore.athletes.sorted { $1.name < $0.name }
         }
         
         picker.reloadComponent(0)
     }
     
     enum SortType {
-        case Alphabetical
+        case Alphabetical_Asc
+        case Alphabetical_Des
     }
     
 }
