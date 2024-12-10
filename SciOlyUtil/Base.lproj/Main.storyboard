@@ -662,8 +662,8 @@
                                         </attributedString>
                                         <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1P-ZQ-2BV">
-                                        <rect key="frame" x="0.0" y="128.33333333333334" width="373" height="34.333333333333343"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1P-ZQ-2BV">
+                                        <rect key="frame" x="0.0" y="124.66666666666664" width="373" height="34.333333333333329"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" image="keyboard.chevron.compact.down.fill" catalog="system">
                                             <color key="baseBackgroundColor" red="0.39607843139999999" green="0.56862745100000001" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -672,8 +672,8 @@
                                             <action selector="resign:" destination="jlG-3A-m6f" eventType="touchUpInside" id="II3-Nz-aCt"/>
                                         </connections>
                                     </button>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="nW3-1F-tvt">
-                                        <rect key="frame" x="0.0" y="228.66666666666669" width="373" height="34"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="nW3-1F-tvt">
+                                        <rect key="frame" x="0.0" y="221" width="373" height="34"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0nK-VH-2zM">
                                                 <rect key="frame" x="0.0" y="0.0" width="59.666666666666664" height="34"/>
@@ -695,32 +695,11 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="kH9-2f-bP0">
-                                        <rect key="frame" x="0.0" y="328.33333333333331" width="373" height="31"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7a0-zE-WMq">
-                                                <rect key="frame" x="0.0" y="0.0" width="299" height="31"/>
-                                                <attributedString key="attributedText">
-                                                    <fragment content="Custom Event">
-                                                        <attributes>
-                                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <font key="NSFont" size="17" name="Futura-Medium"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="EqZ-4m-A7O">
-                                                <rect key="frame" x="324" y="0.0" width="51" height="31"/>
-                                                <connections>
-                                                    <action selector="customEvent:" destination="jlG-3A-m6f" eventType="valueChanged" id="WAf-VJ-KpP"/>
-                                                </connections>
-                                            </switch>
-                                        </subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="kH9-2f-bP0">
+                                        <rect key="frame" x="0.0" y="317" width="373" height="50"/>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="D6w-VZ-ulq" userLabel="Event Picker">
-                                        <rect key="frame" x="0.0" y="425.33333333333326" width="373" height="216"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="D6w-VZ-ulq" userLabel="Event Picker">
+                                        <rect key="frame" x="0.0" y="429" width="373" height="216"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ydx-iI-XMD">
                                                 <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="216"/>
@@ -795,7 +774,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="5xY-pI-nus"/>
                     <connections>
-                        <outlet property="customStack" destination="iTB-QU-hgy" id="vaQ-RO-eJw"/>
                         <outlet property="picker" destination="afA-8B-egz" id="lwB-fe-E4a"/>
                         <outlet property="pickerStack" destination="D6w-VZ-ulq" id="7UN-47-14o"/>
                         <outlet property="room" destination="IYt-A5-yWb" id="fWQ-6K-CSB"/>
@@ -1203,9 +1181,9 @@
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dyR-Z4-3oV">
                                                 <rect key="frame" x="158" y="0.0" width="185" height="32"/>
                                                 <segments>
+                                                    <segment title="Varsity"/>
                                                     <segment title="JV1"/>
                                                     <segment title="JV2"/>
-                                                    <segment title="Varsity"/>
                                                 </segments>
                                             </segmentedControl>
                                         </subviews>

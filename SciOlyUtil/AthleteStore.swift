@@ -106,6 +106,7 @@ enum EventType: Int, CustomStringConvertible, CaseIterable, Codable {
     case MicrobeMission
     case Optics
     case RobotTour
+    case Tower
     case WindPower
     case WriteItDoIt
         
@@ -131,6 +132,7 @@ enum EventType: Int, CustomStringConvertible, CaseIterable, Codable {
         case .MicrobeMission: return "Microbe Mission"
         case .Optics: return "Optics"
         case .RobotTour: return "Robot Tour"
+        case .Tower: return "Tower"
         case .WindPower: return "Wind Power"
         case .WriteItDoIt: return "Write It Do It"
         

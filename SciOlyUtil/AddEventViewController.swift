@@ -9,7 +9,6 @@ import UIKit
 
 class AddEventViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet weak var pickerStack: UIStackView!
-    @IBOutlet weak var customStack: UIStackView!
     @IBOutlet weak var picker: UIPickerView!
     @IBOutlet weak var room: UITextField!
     
@@ -25,15 +24,6 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         AddEventViewController.available = MeetStore.getAvailable(meet: meet)
     }
 
-    @IBAction func customEvent(_ sender: UISwitch) {
-        if sender.isOn {
-            customStack.isHidden = false
-            pickerStack.isHidden = true
-        } else {
-            customStack.isHidden = true
-            pickerStack.isHidden = false
-        }
-    }
     
     @IBAction func add(_ sender: UIButton) {
         meet.blocks[index].events.append(Event(type: AddEventViewController.available[picker.selectedRow(inComponent: 0)], room: room.text!))

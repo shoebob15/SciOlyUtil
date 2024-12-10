@@ -34,11 +34,17 @@ class AddPersonToEventViewController: UIViewController, UIPickerViewDelegate, UI
             self.sort(type: .Alphabetical_Des)
         }
         
+        let teamClosure = { (action: UIAction) in
+            self.sort(type: .teamLvl)
+        }
+        
         var options = [UIMenuElement]()
         
         options.append(UIAction(title: "Alphabetical (Asc)", handler: alphabeticalAscClosure))
         
         options.append(UIAction(title: "Alphabetical (Des)", handler: alphabeticalDesClosure))
+        
+        options.append(UIAction(title: "Team", handler: teamClosure))
         
         sortButton.menu = UIMenu(title: "Sort", children: options)
         
@@ -88,6 +94,8 @@ class AddPersonToEventViewController: UIViewController, UIPickerViewDelegate, UI
             
         case .Alphabetical_Des:
             AthleteStore.athletes = AthleteStore.athletes.sorted { $1.name < $0.name }
+        case .teamLvl:
+            AthleteStore.athletes = AthleteStore.athletes.sorted{ $0.team.rawValue < $1.team.rawValue }
         }
         
         picker.reloadComponent(0)
@@ -96,6 +104,7 @@ class AddPersonToEventViewController: UIViewController, UIPickerViewDelegate, UI
     enum SortType {
         case Alphabetical_Asc
         case Alphabetical_Des
+        case teamLvl
     }
     
 }
