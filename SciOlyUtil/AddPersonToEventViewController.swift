@@ -83,7 +83,7 @@ class AddPersonToEventViewController: UIViewController, UIPickerViewDelegate, UI
             !event.athletes.contains { $0.name == athlete.name}
         }
         
-        return filtered[row].name
+        return "\(filtered[row].name) - \(filtered[row].team.description)"
     }
     
     func sort(type: SortType) {
