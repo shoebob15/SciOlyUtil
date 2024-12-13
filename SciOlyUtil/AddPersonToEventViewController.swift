@@ -7,9 +7,8 @@
 
 import UIKit
 
-class AddPersonToEventViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-    
-    @IBOutlet weak var picker: UIPickerView!
+class AddPersonToEventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet weak var table: UITableView!
     
     var vc: EventDetailViewController!
     
@@ -20,8 +19,11 @@ class AddPersonToEventViewController: UIViewController, UIPickerViewDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        picker.delegate = self
-        picker.dataSource = self
+        table.dataSource = self
+        table.delegate = self
+        
+        table.allowsMultipleSelection = true
+        
         
         
         // build sort button
@@ -58,32 +60,15 @@ class AddPersonToEventViewController: UIViewController, UIPickerViewDelegate, UI
             !event.athletes.contains { $0.name == athlete.name}
         }
         
-        event.athletes.append(
-            filtered[picker.selectedRow(inComponent: 0)]
-        )
+        for indexPath in table.indexPathsForSelectedRows! {
+            let athlete = filtered[indexPath.row]
+            
+            event.athletes.append(athlete)
+        }
+ 
         vc.refresh()
         
         self.dismiss(animated: true)
-    }
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        let filtered = AthleteStore.athletes.filter { athlete in
-            !event.athletes.contains { $0.name == athlete.name}
-        }
-        
-        return filtered.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let filtered = AthleteStore.athletes.filter { athlete in
-            !event.athletes.contains { $0.name == athlete.name}
-        }
-        
-        return "\(filtered[row].name) - \(filtered[row].team.description)"
     }
     
     func sort(type: SortType) {
@@ -98,7 +83,36 @@ class AddPersonToEventViewController: UIViewController, UIPickerViewDelegate, UI
             AthleteStore.athletes = AthleteStore.athletes.sorted{ $0.team.rawValue < $1.team.rawValue }
         }
         
-        picker.reloadComponent(0)
+        🐴()
+
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let filtered = AthleteStore.athletes.filter { athlete in
+            !event.athletes.contains { $0.name == athlete.name}
+        }
+        
+        return filtered.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = table.dequeueReusableCell(withIdentifier: "person")!
+        
+        let filtered = AthleteStore.athletes.filter { athlete in
+            !event.athletes.contains { $0.name == athlete.name}
+        }
+        
+        cell.textLabel!.text = filtered[indexPath.row].name
+        cell.detailTextLabel!.text = filtered[indexPath.row].team.description
+        
+        return cell
+    }
+    
+    // reloads data in table view
+    func 🐴() {
+        let range = NSMakeRange(0, self.table.numberOfSections)
+        let sections = NSIndexSet(indexesIn: range)
+        self.table.reloadSections(sections as IndexSet, with: .automatic)
     }
     
     enum SortType {
