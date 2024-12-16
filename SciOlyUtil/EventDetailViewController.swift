@@ -48,6 +48,17 @@ class EventDetailViewController: UIViewController, UITableViewDelegate, UITableV
         return cell
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            event.athletes.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        
+        refresh()
+        
+        AthleteStore.save()
+    }
+    
     func refresh() {
         if event.athletes.isEmpty {
             overlay.isHidden = false
