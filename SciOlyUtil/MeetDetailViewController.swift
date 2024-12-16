@@ -110,11 +110,16 @@ class MeetDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         // date format
         let format = DateFormatter()
         
-        format.dateFormat = "HH:mm"
+        format.dateFormat = "hh:mm a"
+
         
+        if blockSelector.selectedSegmentIndex < meet.blocks.count - 1 {
+            timeLabel.text = "\(format.string(from: block.start)) - \(format.string(from: block.end))"
+        } else {
+            timeLabel.text = "SELF SCHEDULE"
+        }
         
-        
-        timeLabel.text = "\(format.string(from: block.start)) - \(format.string(from: block.end))"
+
         
         if events.isEmpty {
             overlay.isHidden = false
