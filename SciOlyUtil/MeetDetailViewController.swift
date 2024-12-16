@@ -12,6 +12,7 @@ class MeetDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var meetName: UILabel!
     @IBOutlet weak var blockSelector: UISegmentedControl!
     @IBOutlet weak var overlay: UIStackView!
+    @IBOutlet weak var timeLabel: UILabel!
     
     var meet: Meet!
     var events: [Event]!
@@ -103,6 +104,17 @@ class MeetDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     func refresh() {
         events = meet.blocks[blockSelector.selectedSegmentIndex].events
         eventTable.reloadData()
+        
+        let block = meet.blocks[blockSelector.selectedSegmentIndex]
+        
+        // date format
+        let format = DateFormatter()
+        
+        format.dateFormat = "HH:mm"
+        
+        
+        
+        timeLabel.text = "\(format.string(from: block.start)) - \(format.string(from: block.end))"
         
         if events.isEmpty {
             overlay.isHidden = false

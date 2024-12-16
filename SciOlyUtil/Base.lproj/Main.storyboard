@@ -321,14 +321,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="3GF-OB-ZS4">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="3GF-OB-ZS4">
                                 <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="WCG-9K-5vZ" userLabel="Heading">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="113.66666666666667"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="WCG-9K-5vZ" userLabel="Heading">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="90.666666666666671"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.01" translatesAutoresizingMaskIntoConstraints="NO" id="y2p-70-Sj8">
-                                                <rect key="frame" x="0.0" y="0.0" width="393" height="62.666666666666664"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.01" translatesAutoresizingMaskIntoConstraints="NO" id="y2p-70-Sj8">
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="48.333333333333336"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="Meet Name">
                                                         <attributes>
@@ -340,11 +340,11 @@
                                                 </attributedString>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="5cW-rw-ME2" userLabel="Block Selector">
-                                                <rect key="frame" x="0.0" y="82.666666666666657" width="393" height="31"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillProportionally" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="5cW-rw-ME2" userLabel="Block Selector">
+                                                <rect key="frame" x="0.0" y="68.333333333333343" width="393" height="22.333333333333329"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Be-Mn-4BC">
-                                                        <rect key="frame" x="0.0" y="0.0" width="56.333333333333336" height="31"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="56.333333333333336" height="22.333333333333332"/>
                                                         <attributedString key="attributedText">
                                                             <fragment content="Block:">
                                                                 <attributes>
@@ -357,7 +357,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="JbP-Uz-AjO">
-                                                        <rect key="frame" x="86.333333333333343" y="0.0" width="306.66666666666663" height="32"/>
+                                                        <rect key="frame" x="86.333333333333343" y="0.0" width="306.66666666666663" height="23.333333333333332"/>
                                                         <segments>
                                                             <segment title="A"/>
                                                             <segment title="B"/>
@@ -375,6 +375,19 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gCo-fl-q8M">
+                                        <rect key="frame" x="0.0" y="105.66666666666666" width="393" height="22.333333333333329"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="8:15 am - 9:00 am">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <font key="NSFont" size="17" name="Futura-Medium"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="J5U-0E-Hhg" userLabel="Table">
                                         <rect key="frame" x="0.0" y="143" width="393" height="572"/>
                                         <subviews>
@@ -472,6 +485,7 @@
                         <outlet property="eventTable" destination="eC2-Wl-S9s" id="qri-eM-YDb"/>
                         <outlet property="meetName" destination="y2p-70-Sj8" id="mum-0J-qYz"/>
                         <outlet property="overlay" destination="NG5-gJ-LkB" id="1lR-W2-x6K"/>
+                        <outlet property="timeLabel" destination="gCo-fl-q8M" id="vTy-c0-fmp"/>
                         <segue destination="bgd-Ry-om5" kind="show" identifier="manual" id="N6D-jM-eSp"/>
                     </connections>
                 </viewController>
