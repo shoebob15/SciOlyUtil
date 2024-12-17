@@ -23,30 +23,38 @@ class AddMeetViewController: UIViewController {
     
     
     @IBAction func add(_ sender: Any) {
-        var blocks = [Block]()
-        let min = Calendar.current.component(.minute, from: blockLength.date)
-        
-        for i in 0...Int(numBlocks.text!)! - 1 {
-            blocks.append(
-                Block(start: date.date + TimeInterval(min * 60 * i), end: date.date + TimeInterval(min * 60 * i) + TimeInterval(min * 60), events: [Event]()) // best code ever
-            )
+        if (name.text != "" && numBlocks.text != "") {
+            var blocks = [Block]()
+            let min = Calendar.current.component(.minute, from: blockLength.date)
+            
+            for i in 0...Int(numBlocks.text!)! - 1 {
+                blocks.append(
+                    Block(start: date.date + TimeInterval(min * 60 * i), end: date.date + TimeInterval(min * 60 * i) + TimeInterval(min * 60), events: [Event]()) // best code ever
+                )
+            }
+            
+            blocks.append(Block(start: Date.now, end: Date.now, events: [Event]())) // SS block
+            
+            print(blocks.count)
+            
+            MeetStore.meets.append(Meet(name: name.text!, date: date.date, blocks: blocks))
+            
+            vc.table.reloadData()
+            
+            vc.update()
+            
+            MeetStore.save()
+            
+            self.dismiss(animated: true)
         }
-        
-        blocks.append(Block(start: Date.now, end: Date.now, events: [Event]())) // SS block
-        
-        print(blocks.count)
-                
-        MeetStore.meets.append(Meet(name: name.text!, date: date.date, blocks: blocks))
-        
-        vc.table.reloadData()
-        
-        vc.update()
-        
-        MeetStore.save()
-        
-        self.dismiss(animated: true)
+        else {
+            let alert = UIAlertController(title: "Invalid Input", message: "Please make sure your input is valid ", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Ok", style: .default))
+            
+            present(alert, animated: true)
+        }
     }
-    
 
     @IBAction func resign(_ sender: Any) {
         name.resignFirstResponder()

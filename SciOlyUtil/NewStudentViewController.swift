@@ -8,7 +8,7 @@
 import UIKit
 
 class NewStudentViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-
+    
     
     @IBOutlet weak var firstName: UITextField!
     @IBOutlet weak var lastName: UITextField!
@@ -29,7 +29,7 @@ class NewStudentViewController: UIViewController, UIPickerViewDelegate, UIPicker
         
         eventPicker.delegate = self
         eventPicker.dataSource = self
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,34 +58,37 @@ class NewStudentViewController: UIViewController, UIPickerViewDelegate, UIPicker
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         athlete.event[blockPicker.selectedSegmentIndex] = EventType(rawValue: blockPicker.selectedSegmentIndex)!
     }
-
+    
     @IBAction func add(_ sender: UIButton) {
-        AthleteStore.new = Athlete(first: firstName.text!, last: lastName.text!, event: athlete.event, team: TeamType(rawValue: team.selectedSegmentIndex)!)
-        
-        if !edit {
-            AthleteStore.athletes.append(AthleteStore.new!)
-        } else {
-            if let index = AthleteStore.athletes.firstIndex(where: { $0.first == athlete.first && $0.last == athlete.last }) {
-                AthleteStore.athletes[index] = AthleteStore.new!
+        if (firstName.text != "" && lastName.text != "") {
+            AthleteStore.new = Athlete(first: firstName.text!, last: lastName.text!, event: athlete.event, team: TeamType(rawValue: team.selectedSegmentIndex)!)
+            
+            if !edit {
+                AthleteStore.athletes.append(AthleteStore.new!)
+            } else {
+                if let index = AthleteStore.athletes.firstIndex(where: { $0.first == athlete.first && $0.last == athlete.last }) {
+                    AthleteStore.athletes[index] = AthleteStore.new!
+                }
             }
             
+            if let vc {
+                vc.update()
+            }
             
-
+            if let detailVc {
+                detailVc.refresh()
+            }
+            
+            AthleteStore.save()
+            
+            self.dismiss(animated: true)
+        } else {
+            let alert = UIAlertController(title: "Invalid Input", message: "Please make sure your input is valid ", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Ok", style: .default))
+            
+            present(alert, animated: true)
         }
-        
-        if let vc {
-            vc.update()
-        }
-        
-        if let detailVc {
-            detailVc.refresh()
-        }
-        
-        AthleteStore.save()
-        
-        
-        
-        self.dismiss(animated: true)
     }
     
     @IBAction func resign(_ sender: Any) {

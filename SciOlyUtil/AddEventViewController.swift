@@ -26,14 +26,23 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
 
     
     @IBAction func add(_ sender: UIButton) {
-        meet.blocks[index].events.append(Event(type: AddEventViewController.available[picker.selectedRow(inComponent: 0)], room: room.text!))
-        
-        if let index = AddEventViewController.available.firstIndex(of: EventType(rawValue: picker.selectedRow(inComponent: 0))!) {
-            AddEventViewController.available.remove(at: index)
+        if(room.text != ""){
+            meet.blocks[index].events.append(Event(type: AddEventViewController.available[picker.selectedRow(inComponent: 0)], room: room.text!))
+            
+            if let index = AddEventViewController.available.firstIndex(of: EventType(rawValue: picker.selectedRow(inComponent: 0))!) {
+                AddEventViewController.available.remove(at: index)
+            }
+            
+            vc.refresh()
+            self.dismiss(animated: true)
         }
-        
-        vc.refresh()
-        self.dismiss(animated: true)
+        else {
+            let alert = UIAlertController(title: "Invalid Input", message: "Please make sure your input is valid ", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Ok", style: .default))
+            
+            present(alert, animated: true)
+        }
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
